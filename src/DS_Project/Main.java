@@ -9,7 +9,6 @@ package ds_project;
  * @author noufalmansour
  */
 import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
         InvertedIndexUsingList listIndex = new InvertedIndexUsingList();
@@ -17,11 +16,24 @@ public class Main {
         Reading reader = new Reading();
 
         // Load stop words and dataset
-        reader.loadStopWords("Data/stop.txt");
-        reader.loadDocuments("Data/dataset.csv", listIndex, bstIndex);
+        System.out.println("Loading stop words and dataset...");
+        reader.loadStopWords("/Users/noufalmansour/Downloads/data/stop.txt");
+
+        long startTime, endTime;
+
+        // Measure time for building List-based Index
+        startTime = System.currentTimeMillis();
+        reader.loadDocuments("/Users/noufalmansour/Downloads/data/dataset.csv", listIndex, new InvertedIndexUsingBST());
+        endTime = System.currentTimeMillis();
+        System.out.println("Time to build List-based Inverted Index: " + (endTime - startTime) + " ms");
+
+        // Measure time for building BST-based Index
+        startTime = System.currentTimeMillis();
+        reader.loadDocuments("/Users/noufalmansour/Downloads/data/dataset.csv", new InvertedIndexUsingList(), bstIndex);
+        endTime = System.currentTimeMillis();
+        System.out.println("Time to build BST-based Inverted Index: " + (endTime - startTime) + " ms");
 
         QueryProcessing qp = new QueryProcessing(reader.getDocumentMap());
-
         Scanner scanner = new Scanner(System.in);
         String choice;
 
@@ -68,10 +80,15 @@ public class Main {
         System.out.println("\n################### Boolean Retrieval ####################");
         System.out.print("\nEnter your query (e.g., term1 AND term2): ");
         String query = scanner.nextLine();
+
+        long startTime = System.currentTimeMillis();
         Set<Integer> result = isList
                 ? qp.evaluateBooleanQueryList((InvertedIndexUsingList) index, query)
                 : qp.evaluateBooleanQueryBST((InvertedIndexUsingBST) index, query);
+        long endTime = System.currentTimeMillis();
+
         System.out.println("Result doc IDs: " + result);
+        System.out.println("Time taken for query processing: " + (endTime - startTime) + " ms");
     }
 
     private static void handleRankedRetrieval(Scanner scanner, QueryProcessing qp) {
@@ -79,11 +96,15 @@ public class Main {
         System.out.print("\nEnter your query terms (space-separated): ");
         String[] terms = scanner.nextLine().split("\\s+");
 
+        long startTime = System.currentTimeMillis();
         Map<Integer, Integer> results = qp.rankedQuery(terms);
+        long endTime = System.currentTimeMillis();
+
         System.out.println("DocID\tScore");
         for (Map.Entry<Integer, Integer> entry : results.entrySet()) {
             System.out.println(entry.getKey() + "\t" + entry.getValue());
         }
+        System.out.println("Time taken for ranked retrieval: " + (endTime - startTime) + " ms");
     }
 
     private static void showIndexedDocuments(InvertedIndexUsingList listIndex, InvertedIndexUsingBST bstIndex) {
