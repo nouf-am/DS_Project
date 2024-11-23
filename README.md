@@ -41,9 +41,6 @@ The project supports:
 
 ---
 
-### Project Structure
-├── src/ │ ├── ds_project/ │ │ ├── Document.java # Represents a document with ID and content │ │ ├── InvertedIndexUsingList.java # Implements a list-based inverted index │ │ ├── InvertedIndexUsingBST.java # Implements a BST-based inverted index │ │ ├── QueryProcessing.java # Handles query evaluation and ranking │ │ ├── Reading.java # Handles document and stop-word file reading │ │ ├── Main.java # Provides the interactive user interface ├── data/ │ ├── stop.txt # Stop words file │ ├── dataset.csv # Document dataset file ├── README.md # Project documentation
-
 ### Usage
 The program provides an interactive menu with the following options:
 
