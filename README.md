@@ -86,3 +86,8 @@ The program provides an interactive menu with the following options:
 - **BST-based Index**:
   - Faster term lookups (O(log n) complexity).
   - Scales better for larger datasets.
+
+ ---
+ ## Group Members:
+ - Nouf AlMansour (444200525)
+ - Maha AlBakr (444201108)
