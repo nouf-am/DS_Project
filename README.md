@@ -20,54 +20,53 @@ The project supports:
 ### Features
 1. **Document Processing**:
    - Reads documents from a CSV file.
-   - Handles preprocessing: lowercase conversion, stop-word removal, punctuation cleaning, and tokenization.
-   
+   - Handles preprocessing:
+     - Lowercase conversion.
+     - Stop-word removal.
+     - Punctuation cleaning.
+     - Tokenization.
+
 2. **Indexing**:
-   - Implements a list-based inverted index for mapping terms to document IDs.
-   - Enhances performance with a BST-based inverted index for faster term lookups.
+   - **List-based Inverted Index**:
+     - Maps terms to document IDs using a linked list.
+     - Efficient for small datasets but slower for large-scale queries.
+   - **BST-based Inverted Index**:
+     - Maps terms to document IDs using a binary search tree.
+     - Optimized for faster term lookups with large datasets.
 
 3. **Query Processing**:
-   - Supports Boolean queries (`AND`, `OR`).
-   - Ranks documents based on term frequency for query terms.
+   - **Boolean Queries**:
+     - Supports `AND` and `OR` operators for finding documents containing the specified terms.
+   - **Ranked Retrieval**:
+     - Ranks documents based on term frequency (TF).
 
 4. **User Interface**:
    - Interactive console-based menu for:
-     - Boolean Retrieval.
-     - Ranked Retrieval.
+     - Performing Boolean Retrieval using list or BST indices.
+     - Performing Ranked Retrieval.
      - Viewing index statistics (number of indexed documents and tokens).
 
 5. **Performance Analysis**:
-   - Provides a comparative analysis of Boolean retrieval using list-based and BST-based indices.
+   - Provides a comparative analysis of Boolean retrieval efficiency between list-based and BST-based indices.
 
 ---
 
 ### Usage
 The program provides an interactive menu with the following options:
 
-1. **Boolean Retrieval (List)**: Perform a Boolean query using the list-based index.
-2. **Boolean Retrieval (BST)**: Perform a Boolean query using the BST-based index.
+1. **Boolean Retrieval (List)**: Perform a Boolean query using the list-based inverted index.
+2. **Boolean Retrieval (BST)**: Perform a Boolean query using the BST-based inverted index.
 3. **Ranked Retrieval**: Rank documents based on query term frequencies.
-4. **Indexed Documents**: Display the number of indexed documents.
-5. **Indexed Tokens**: Display the number of tokens in the index.
+4. **Indexed Documents**: Display the total number of documents indexed in both indices.
+5. **Indexed Tokens**: Display the total number of unique terms (tokens) indexed in both indices.
 6. **Quit**: Exit the program.
 
 #### Example Queries
-- Boolean Query: `term1 AND term2`
-- Ranked Query: `term1 term2 term3`
+- **Boolean Query**: `term1 AND term2`
+- **Ranked Query**: `term1 term2 term3`
 
----
-
-### Deliverables
-1. **Index**:
-   - List-based and BST-based implementations for mapping terms to document IDs.
-2. **Query Processor**:
-   - Boolean and ranked retrieval implementations.
-3. **Performance Analysis**:
-   - Comparative analysis of retrieval times between list and BST indices.
-4. **Documentation**:
-   - Project design and implementation details, including class diagrams.
-
----
+  ----
+  ---
 
 ### Performance Analysis
 #### Comparison of Indices
@@ -77,5 +76,8 @@ The program provides an interactive menu with the following options:
 - **BST-based Index**:
   - Faster term lookups (O(log n) complexity).
   - Scales better for larger datasets.
+
+
+
 
 
