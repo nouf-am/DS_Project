@@ -17,8 +17,8 @@ public class Main {
         Reading reader = new Reading();
 
         // Load stop words and dataset
-        reader.loadStopWords("data/stop.txt");
-        reader.loadDocuments("data/dataset.csv", listIndex, bstIndex);
+        reader.loadStopWords("Data/stop.txt");
+        reader.loadDocuments("Data/dataset.csv", listIndex, bstIndex);
 
         QueryProcessing qp = new QueryProcessing(reader.getDocumentMap());
 
